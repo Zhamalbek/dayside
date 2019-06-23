@@ -20,6 +20,29 @@
 		}
       require_once('views/tasks/insert.php');
     }
+	
+    public function update() {
+		if($_SESSION['user'] == '') {
+			echo 'вы не авторизованы!!!';
+			call('tasks', 'login');
+			exit();
+		}
+		if(isset($_POST['saveup']))
+		{	 
+			 $id = $_GET['id'];
+			 $fio = $_POST['fio'];
+			 $email = $_POST['email'];
+			 $text = $_POST['text'];
+			 $checkbox = ($_POST['checkbox']=='on')?'1':'0';
+			 $task = Task::update($id,$fio,$email,$text,$checkbox);
+		}
+      if (!isset($_GET['id']))
+        return call('pages', 'error');
+	
+	  $task = Task::show($_GET['id']);
+      require_once('views/tasks/update.php');
+    }
+	
     public function login() {
 		if(isset($_POST['login']))
 		{	 
