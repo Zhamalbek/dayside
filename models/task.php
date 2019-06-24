@@ -51,12 +51,11 @@
     
     public static function pager($page, $pages_count) {
         global $page, $pages_count;
-		$url = preg_replace( "/\&p=[0-9]+/", "", $_SERVER["REQUEST_URI"]);
         for ($j = 1; $j <= $pages_count; $j++) {
             if ($j == $page) {
-                echo ' <li class="active"><a class="page-link" href="'.$url.'&p='.$j.'">'.$j.'</a></li> ';
+                echo ' <li class="active"><a class="page-link" href="index.php?controller=tasks&action=index&&p='.$j.'">'.$j.'</a></li> ';
             } else {
-                echo ' <li class="page-item"><a class="page-link" href="'.$url.'&p='.$j.'">'.$j.'</a></li> ';
+                echo ' <li class="page-item"><a class="page-link" href="index.php?controller=tasks&action=index&&p='.$j.'">'.$j.'</a></li> ';
             }
             if ($j != $pages_count) echo ' ';
         } 
